@@ -4,22 +4,35 @@
 
 import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
-import { useStore } from './store';
+import { useStore } from '../store/store';
 import { shallow } from 'zustand/shallow';
-import { InputNode } from './nodes/inputNode';
-import { LLMNode } from './nodes/llmNode';
-import { OutputNode } from './nodes/outputNode';
-import { TextNode } from './nodes/textNode';
+import { InputNode } from '../nodes/inputNode';
+import { LLMNode } from '../nodes/llmNode';
+import { OutputNode } from '../nodes/outputNode';
+import { TextNode } from '../nodes/textNode';
 
 import 'reactflow/dist/style.css';
+import { ImageNode } from '../newNodes/ImageNode';
+import { MathNode } from '../newNodes/MathNode';
+import { TimerNode } from '../newNodes/TimerNode';
+import { APIReqResNode } from '../newNodes/APIReqResNode';
+import { IdgeneratorNode } from '../newNodes/IdGeneratorNode';
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
+
 const nodeTypes = {
   customInput: InputNode,
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
+
+  // 5 New Nodes
+  image: ImageNode,
+  math: MathNode,
+  timer: TimerNode,
+  api: APIReqResNode,
+  uid: IdgeneratorNode
 };
 
 const selector = (state) => ({
