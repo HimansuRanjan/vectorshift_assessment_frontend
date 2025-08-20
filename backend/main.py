@@ -12,10 +12,17 @@ class PipelineResponse(BaseModel):
     num_edges: int
     is_dag: bool
 
+# allow your frontend domain (Vercel) and localhost for dev
+origins = [
+    "http://localhost:5173",   # Vite default dev server
+    "http://localhost:3000",   # CRA default dev server
+    "https://vectorshift-assessment-frontend.vercel.app"  # <-- your Vercel URL
+]
+
 # ✅ Add CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # frontend origin
+    allow_origins=origins,  # frontend origin
     allow_credentials=True,
     allow_methods=["*"],  # or specify: ["POST", "GET"]
     allow_headers=["*"],
