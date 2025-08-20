@@ -1,6 +1,7 @@
 // textNode.js
 import { useState, useEffect } from "react";
 import { Handle, Position } from "reactflow";
+import { useStore } from "../store/store";
 
 const varRegex = /\{\{\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\}\}/g;
 
@@ -8,15 +9,33 @@ export const TextNode = ({ id, data }) => {
   const [currText, setCurrText] = useState(data?.text || "");
   const [leftHandle, setLeftHandle] = useState(false);
 
+  const inputNodes = useStore((s) => s.inputNodes);
+  const addEdgeBetween = useStore((s) => s.addEdgeBetween);
+  const removeEdgeBetween = useStore((s) => s.removeEdgeBetween);
+
   const handleTextChange = (e) => setCurrText(e.target.value);
 
   useEffect(() => {
-    const matches = [...currText.matchAll(varRegex)].map((m) => m[1]); // find potential variables
-    //check with inputNodes that it is present or not
-    // const validMatches = matches.filter((match) => inputNodes.includes(match));
+    // extract variable names from current text using regex
+    const validMatches = [...currText.matchAll(varRegex)]
+      .map((m) => m[1])
+      .filter((match) => inputNodes.includes(match));
 
+    if (validMatches.length > 0) {
+      // if a valid match exists, create edge(s) from input → this node
+      validMatches.forEach((match) => {
+        addEdgeBetween(match.replace("input_", "customInput-"), id);
+      });
+      setLeftHandle(true);
+    } else {
+      // no valid matches, remove edges from input → this node
+      inputNodes.forEach((input) => {
+        removeEdgeBetween(input.replace("input_", "customInput-"), id);
+      });
+      setLeftHandle(false);
+    }
+  }, [currText, inputNodes, id, addEdgeBetween, removeEdgeBetween]);
 
-  }, [currText]);
 
   return (
     <div className="w-56 rounded-xl border border-indigo-300 bg-indigo-50 shadow-md overflow-hidden">
@@ -45,14 +64,22 @@ export const TextNode = ({ id, data }) => {
         />
       </div>
 
-      {
+      {/* {
       leftHandle && <Handle
         type="target"
         position={Position.Left}
         id={`${id}-input`}
         className="!w-4 !h-4 rounded-full bg-transparent border-2 border-indigo-500"
       />
-      }
+      } */}
+
+      <Handle
+        type="target"
+        position={Position.Left}
+        id={`${id}-input`}
+        className={`!w-4 !h-4 rounded-full bg-transparent border-2 border-indigo-500 
+        ${leftHandle ? "visible" : "invisible" }`}
+      />
 
       {/* Output Handle */}
       <Handle

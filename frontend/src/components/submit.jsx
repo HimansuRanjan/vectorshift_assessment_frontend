@@ -71,7 +71,7 @@ export const SubmitButton = () => {
                   <strong>Edges:</strong> {result?.num_edges}
                 </p>
                 <p>
-                  <strong>Is DAG:</strong>{" "}
+                  <strong>Is Directed Acyclic Graph:</strong>{" "}
                   {result?.is_dag ? "✅ Yes" : "❌ No"}
                 </p>
               </div>
