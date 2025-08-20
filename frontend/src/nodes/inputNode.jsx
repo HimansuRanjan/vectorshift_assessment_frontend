@@ -55,7 +55,7 @@ export const InputNode = ({ id, data }) => {
         type="source"
         position={Position.Right}
         id={`${id}-value`}
-        className="!w-4 !h-4 rounded-full bg-transparent border-2 border-indigo-500"
+        className="!w-4 !h-4 bg-white border border-black rounded-full"
       />
     </div>
   );

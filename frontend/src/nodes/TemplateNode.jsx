@@ -167,7 +167,7 @@ export const TemplateNode = ({ id, data }) => {
           type={h.type}
           position={h.position === "Right" ? Position.Right : Position.Left}
           id={`${id}-${h.id}`}
-          className="!w-4 !h-4 rounded-full bg-white border border-black"
+          className="!w-4 !h-4 bg-white border border-black rounded-full"
           style={h.style}
         />
       ))}

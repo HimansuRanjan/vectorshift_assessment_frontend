@@ -77,7 +77,7 @@ export const TextNode = ({ id, data }) => {
         type="target"
         position={Position.Left}
         id={`${id}-input`}
-        className={`!w-4 !h-4 rounded-full bg-transparent border-2 border-indigo-500 
+        className={`!w-4 !h-4 bg-white border border-black rounded-full 
         ${leftHandle ? "visible" : "invisible" }`}
       />
 
@@ -86,7 +86,7 @@ export const TextNode = ({ id, data }) => {
         type="source"
         position={Position.Right}
         id={`${id}-output`}
-        className="!w-4 !h-4 rounded-full bg-transparent border-2 border-indigo-500"
+        className="!w-4 !h-4 bg-white border border-black rounded-full"
       />
     </div>
   );

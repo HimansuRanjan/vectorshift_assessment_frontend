@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useStore } from "../store/store";
 
+const api = process.env.REACT_APP_SUBMIT_URL || "http://localhost:8000";
+// const api =  "http://localhost:8000";
+
+
 export const SubmitButton = () => {
   const nodes = useStore((s) => s.nodes);
   const edges = useStore((s) => s.edges);
@@ -10,7 +14,7 @@ export const SubmitButton = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:8000/pipelines/parse", {
+      const response = await fetch(`${api}/pipelines/parse`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nodes, edges }),
@@ -21,7 +25,7 @@ export const SubmitButton = () => {
       setShowModal(true);
     } catch (err) {
       console.error("Error submitting pipeline:", err);
-      setResult({ error: "❌ Failed to submit pipeline to backend." });
+      setResult({ error: `❌ Failed to submit pipeline to backend.` });
       setShowModal(true);
     }
   };
@@ -57,7 +61,7 @@ export const SubmitButton = () => {
             </button>
 
             <h2 className="text-xl font-semibold mb-4 text-gray-800">
-              Pipeline Analysis
+              Pipeline Analysis 
             </h2>
 
             {result?.error ? (

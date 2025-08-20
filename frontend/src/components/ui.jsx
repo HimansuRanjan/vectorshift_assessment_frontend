@@ -63,6 +63,11 @@ export const PipelineUI = () => {
       return nodeData;
     }
 
+    const edgeOptions = {
+      style: { stroke: "#4f46e5", strokeWidth: 1 }, // bluish-indigo
+      animated: true, // optional
+    };
+
     const onDrop = useCallback(
         (event) => {
           event.preventDefault();
@@ -109,6 +114,7 @@ export const PipelineUI = () => {
                 edges={edges}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
+                defaultEdgeOptions={edgeOptions} // <--- applies to all edges
                 onConnect={onConnect}
                 onDrop={onDrop}
                 onDragOver={onDragOver}

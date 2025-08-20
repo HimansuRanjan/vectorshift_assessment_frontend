@@ -58,7 +58,7 @@ export const OutputNode = ({ id, data }) => {
         type="target"
         position={Position.Left}
         id={`${id}-value`}
-        className="!w-4 !h-4 rounded-full bg-transparent border-2 border-indigo-500"
+        className="!w-4 !h-4 bg-white border border-black rounded-full"
       />
     </div>
   );

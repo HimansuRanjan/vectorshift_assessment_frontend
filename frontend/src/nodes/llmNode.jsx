@@ -24,20 +24,20 @@ export const LLMNode = ({ id }) => {
         position={Position.Left}
         id={`${id}-system`}
         style={{ top: "33%" }}
-        className="!w-4 !h-4 rounded-full bg-transparent border-2 border-indigo-500"
+        className="!w-4 !h-4 bg-white border border-black rounded-full"
       />
       <Handle
         type="target"
         position={Position.Left}
         id={`${id}-prompt`}
         style={{ top: "66%" }}
-        className="!w-4 !h-4 rounded-full bg-transparent border-2 border-indigo-500"
+        className="!w-4 !h-4 bg-white border border-black rounded-full"
       />
       <Handle
         type="source"
         position={Position.Right}
         id={`${id}-response`}
-        className="!w-4 !h-4 rounded-full bg-transparent border-2 border-indigo-500"
+        className="!w-4 !h-4 bg-white border border-black rounded-full"
       />
     </div>
   );
