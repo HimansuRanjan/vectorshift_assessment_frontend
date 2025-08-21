@@ -16,7 +16,7 @@ class PipelineResponse(BaseModel):
 origins = [
     "http://localhost:5173",   # Vite default dev server
     "http://localhost:3000",   # CRA default dev server
-    "https://vectorshift-assessment-frontend.vercel.app"  # <-- your Vercel URL
+    "https://vectorshift-assessment-frontend.vercel.app/p"  # <-- your Vercel URL
 ]
 
 # ✅ Add CORS Middleware
